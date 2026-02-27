@@ -1,4 +1,4 @@
-# Swychr
+# Swychr Sanbox
 
 A PHP library for integrating with the Swychr payment API to create payment links and manage transactions.
 
