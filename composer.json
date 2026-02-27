@@ -1,0 +1,19 @@
+{
+    "name": "flash-walker/switchr",
+    "autoload": {
+        "psr-4": {
+            "FlashWalker\\Switchr\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rabbitmaid",
+            "email": "rabbitmaid@proton.me"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.10",
+        "ramsey/uuid": "^4.9",
+        "symfony/dotenv": "^7.3"
+    }
+}
