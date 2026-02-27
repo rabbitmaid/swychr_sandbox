@@ -1,14 +1,14 @@
-# Switchr
+# Swychr
 
-A PHP library for integrating with the AccountPe payment API to create payment links and manage transactions.
+A PHP library for integrating with the Swychr payment API to create payment links and manage transactions.
 
 ## Overview
 
-Switchr simplifies payment processing by providing a clean, easy-to-use interface for creating payment links through AccountPe's payment gateway. It handles authentication, transaction ID generation, and payment link creation with minimal configuration.
+Swychr simplifies payment processing by providing a clean, easy-to-use interface for creating payment links through Swychr's payment gateway. It handles authentication, transaction ID generation, and payment link creation with minimal configuration.
 
 ## Features
 
-- **Easy Authentication**: Simple token-based authentication with AccountPe API
+- **Easy Authentication**: Simple token-based authentication with Swychr API
 - **Payment Link Generation**: Create payment links in seconds with flexible configuration
 - **UUID Transaction IDs**: Automatic generation of unique transaction identifiers
 - **Environment Configuration**: Support for `.env` files for secure credential management
@@ -18,91 +18,38 @@ Switchr simplifies payment processing by providing a clean, easy-to-use interfac
 
 - PHP 7.4 or higher
 - Composer
-- AccountPe API credentials (email and password)
+- Swychr API credentials (email and password)
 
 ## Installation
 
-Clone the Switchr Sandbox repository:
+Clone the Swychr Sandbox repository:
 
 ```bash
-git clone https://github.com/your-username/switchr_sandbox.git
-cd switchr_sandbox
+git clone https://github.com/your-username/swychr_sandbox.git
+cd swychr_sandbox
 composer install
-```
-
-Then include the autoloader in your project:
-
-```php
-require_once 'path/to/switchr-sandbox/vendor/autoload.php';
 ```
 
 ## Setup
 
 ### 1. Create an `.env` file
 
-Create a `.env` file in your project root with your AccountPe credentials:
+Create a `.env` file in your project root with your Swychr credentials:
 
 ```env
-SR_EMAIL=your-accountpe-email@example.com
-SR_PASSWORD=your-accountpe-password
+SR_EMAIL=your-Swychr-email@example.com
+SR_PASSWORD=your-Swychr-password
 ```
 
-### 2. Basic Usage
-
-```php
-<?php
-
-use Symfony\Component\Dotenv\Dotenv;
-use Ramsey\Uuid\Uuid;
-use FlashWalker\Switchr\PaymentService; // Or your payment class
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-// Load environment variables
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__.'/.env');
-
-// Get authentication token
-$email = $_ENV['SR_EMAIL'];
-$password = $_ENV['SR_PASSWORD'];
-$token = getToken($email, $password);
-
-// Create payment link
-$uuid = Uuid::uuid4();
-$transactionId = "txn_" . $uuid->toString();
-
-$paymentData = [
-    "country_code" => "CM",
-    "name" => "Rahul Sharma",
-    "email" => "rahul@example.com",
-    "mobile" => "919876543210",
-    "amount" => 149.5,
-    "currency" => "XAF",
-    "transaction_id" => $transactionId,
-    "description" => "Payment for order #1234",
-    "pass_digital_charge" => true,
-    "callback_url" => "https://merchant.example.com/webhook/payment_status"
-];
-
-$response = createLink($paymentData, $token);
-
-if (!empty($response['data']['payment_link'] ?? null)) {
-    $paymentLink = $response['data']['payment_link'];
-    header("Location: $paymentLink");
-    exit;
-}
-?>
-```
-
-## API Reference
+## Function Reference
 
 ### `getToken(string $email, string $password): string`
 
-Authenticates with AccountPe and returns an API token.
+Authenticates with Swychr and returns an API token.
 
 **Parameters:**
-- `$email` (string): AccountPe account email
-- `$password` (string): AccountPe account password
+- `$email` (string): Swychr account email
+- `$password` (string): Swychr account password
 
 **Returns:** Authorization token for API requests
 
@@ -139,15 +86,15 @@ Creates a payment link with the provided transaction details.
 
 ### Supported Countries and Currencies
 
-Refer to AccountPe's documentation for supported country codes and currencies. The example uses:
+Refer to Swychr's documentation for supported country codes and currencies. The example uses:
 - **Country**: CM (Cameroon)
 - **Currency**: XAF (Central African CFA franc)
 
 ## Security Considerations
 
 1. **Never commit `.env` files** - Add `.env` to your `.gitignore`
-2. **Use strong passwords** for your AccountPe account
-3. **Validate callbacks** from AccountPe webhooks to verify transaction status
+2. **Use strong passwords** for your Swychr account
+3. **Validate callbacks** from Swychr webhooks to verify transaction status
 4. **Use HTTPS** for all callback URLs
 5. **Keep credentials secure** - Use environment variables instead of hardcoding
 
@@ -167,23 +114,6 @@ if (!$response) {
 }
 ```
 
-## Webhook Integration
-
-AccountPe will POST payment status updates to your `callback_url`. Example webhook handler:
-
-```php
-<?php
-// webhook.php
-$payload = json_decode(file_get_contents('php://input'), true);
-
-// Verify the transaction_id and update your database
-$transactionId = $payload['transaction_id'] ?? null;
-$status = $payload['status'] ?? null;
-
-// Handle payment status accordingly
-?>
-```
-
 ## License
 
 This project is licensed under the MIT License.
@@ -194,4 +124,4 @@ This project is licensed under the MIT License.
 
 ---
 
-For more information about AccountPe APIs, visit the [AccountPe Documentation](https://accountpe.com).
+For more information about Swychr APIs, visit the [Swychr Documentation](https://app.swychrconnect.com/collection_api_doc).
