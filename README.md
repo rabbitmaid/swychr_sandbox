@@ -22,10 +22,18 @@ Switchr simplifies payment processing by providing a clean, easy-to-use interfac
 
 ## Installation
 
-Install via Composer:
+Clone the Switchr Sandbox repository:
 
 ```bash
-composer require flash-walker/switchr
+git clone https://github.com/your-username/switchr_sandbox.git
+cd switchr_sandbox
+composer install
+```
+
+Then include the autoloader in your project:
+
+```php
+require_once 'path/to/switchr-sandbox/vendor/autoload.php';
 ```
 
 ## Setup
