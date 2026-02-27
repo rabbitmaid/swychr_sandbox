@@ -1,10 +1,10 @@
 # Swychr Sanbox
 
-A PHP library for integrating with the Swychr payment API to create payment links and manage transactions.
+A PHP Sandbox Script for testing with the Swychr payment API to create payment links and manage transactions.
 
-## Overview
+## About Swychr
 
-Swychr simplifies payment processing by providing a clean, easy-to-use interface for creating payment links through Swychr's payment gateway. It handles authentication, transaction ID generation, and payment link creation with minimal configuration.
+Swychr payment gateway simplifies payment processing by providing a clean, easy-to-use interface for creating payment links.
 
 ## Features
 
