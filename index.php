@@ -46,7 +46,7 @@ function run() {
 
 
 function getToken(string $email, string $password) {
-    $endpoint = "https://api.accountpe.com/api/payin/admin/auth";
+    $endpoint = $_ENV['SR_BASE_URL'] . "/admin/auth";
 
     $data = [
         "email" => $email,
@@ -68,7 +68,7 @@ function getToken(string $email, string $password) {
 
 
 function createLink($data, $token) {
-    $endpoint = 'https://api.accountpe.com/api/payin/create_payment_links';
+    $endpoint = $_ENV['SR_BASE_URL'] . '/create_payment_links';
 
     $client = new \GuzzleHttp\Client();
 
@@ -88,7 +88,5 @@ function createLink($data, $token) {
     return json_decode($response->getBody(), true);
 
 }
-
-
 
 run();
