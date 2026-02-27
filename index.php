@@ -9,7 +9,6 @@ $dotenv = new Dotenv();
 $dotenv->load(__DIR__.'/.env');
 
 
-
 function run() {
 
     $email =  $_ENV['SR_EMAIL'];
@@ -89,7 +88,6 @@ function createLink($data, $token) {
     return json_decode($response->getBody(), true);
 
 }
-
 
 
 
